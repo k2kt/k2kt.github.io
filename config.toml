@@ -2,7 +2,7 @@ baseurl = "https://k2kt.github.io"
 title = "SiteTitle"
 theme = "hugo_theme_robust"
 
-googleAnalytics = "UA-XXXXXXXX-XX" # Optional
+#googleAnalytics = "UA-XXXXXXXX-XX" # Optional
 disqusShortname = "XYW"
 
 [params]
