@@ -1,58 +1,109 @@
-![top](./readme_resource/top.png)
-HUGOを使ったブログを簡単に作成するためのテンプレートです
+This theme is maintained by [Ress](https://github.com/ress997).
 
-[MORE INFO (Zenn)](https://zenn.dev/kato_k/articles/66531db0c4024d)
+# What is this.
 
+This is the grid based theme for Hugo.
 
-## forkするだけでできること
-- GitHub Actionsによる自動デプロイ
-- GitHub Pagesに公開
+[Hugo :: A fast and modern static website engine](https://gohugo.io/)
 
-## セットアップ
+**You need the Hugo `extended` version.**
 
-### HUGOの設定
-`config.toml`を編集してhugoの設定をします  
-`$ hugo serve`を実行してページのプレビューを確認できます  
+## PC View
 
-#### Baseurl
+![screenshot](https://raw.githubusercontent.com/dim0627/hugo_theme_robust/master/images/screenshot.png)
+
+## SP View(Responsive)
+
+![screenshot](https://raw.githubusercontent.com/dim0627/hugo_theme_robust/master/images/responsive.png)
+
+# Features
+
+* [Accelerated Mobile Pages Project](https://www.ampproject.org/) a.k.a AMP supported
+* Responsive design
+* Google Analytics
+* Thumbnail
+* Share button
+* Structured data(Article and Breadcrumb)
+* Twitter cards
+* OGP
+* Disqus
+* Syntax Highlight
+* Show `IsDraft`.
+
+## Installation
+
 ```
-baseURL = "https://{Github ユーザー名}.github.io/{forkしたリポジトリ名}"
-```
-#### ブログのタイトル
-```
-title = "hugo-blog-template"
+$ cd themes
+$ git clone https://github.com/dim0627/hugo_theme_robust.git
 ```
 
-#### 自己紹介
-```
-[Author]
-    name = "Author"
-    bio = "ここに自己紹介を入れることができます"
-    avatar = "img/avatar.png"
-```
-アバターの画像は`static/img/avatar.png`に配置しています
+[Hugo \- Installing Hugo](http://gohugo.io/overview/installing/)
 
-#### ページのテーマカラー
-```
-[Params.style.vars]
-  highlightColor = "#e22d30"
-```
-`#rrggbb`の形式で指定してください
+# `config.toml` example
 
-#### SNS等のユーザー名
 ```
-[Params.widgets.social]
-  twitter = "uvrub"
-  github = "kato-k"
+baseurl = "https://example.com/"
+title = "SiteTitle"
+theme = "hugo_theme_robust"
+
+googleAnalytics = "UA-XXXXXXXX-XX" # Optional
+disqusShortname = "XYW"
+
+[params]
+description = "This is site description"
+dateformat = "Jan 2, 2006" # Optional
+# Fonts settings.
+googlefonts = "https://fonts.googleapis.com/css?family=Lobster|Lato:400,700" # Optional, Include google fonts.
+fontfamily = "Lato,YuGothic,'Hiragino Kaku Gothic Pro',Meiryo,sans-serif" # Optional, Override body font family.
+logofontfamily = "Lobster, cursive" # Optional, Override logo font.
+
+enableHighlight = true # highlight.js option
+
+[params.author]
+thumbnail = "images/author.jpg"
+name = "John Doe"
+description = "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p><p>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"
+facebook = "https://www.facebook.com/daisuke.tsuji.735"
+twitter = "https://twitter.com/dim0627"
+github = "https://github.com/dim0627"
+
+[outputs]
+page = [ "HTML", "AMP" ] # if you want AMP enable.
 ```
-アカウントIDを指定するとサイドバーに表示されます
 
-### GitHub Pagesの設定
-`config.toml`の変更をリモートリポジトリに反映すると、GitHub Actionsによってページのビルドが走ります。  
-ビルド結果は`github-actions[bot]`によって`gh-pages`ブランチにコミットされます。  
+# Frontmatter example
 
-#### ページの公開
-リポジトリの`Settings`タブ→`Pages`を開いてください。  
-![publish](./readme_resource/gh-pages.png)
-画像の四角で囲った部分を`gh-pages`に変更し、`save`をクリックすると公開が始まります。  
-アクセスできるようになるまで10分程度間があります。
+```
++++
+date = "2016-09-28T17:00:00+09:00"
+title = "Article title here"
+thumbnail = "images/thumbnail.jpg" # Optional, referenced at `$HUGO_ROOT/static/images/thumbnail.jpg`
+toc = true # Optional
++++
+```
+
+# Shortcodes
+
+## Image
+
+```
+{{< img src="images/image.jpg" w="600" h="400" >}}
+{{< img src="images/image.jpg" w="600" h="400" caption="Referenced from wikipedia." href="https://en.wikipedia.org/wiki/Lorem_ipsum" >}}
+```
+
+![screenshot](https://raw.githubusercontent.com/dim0627/hugo_theme_robust/master/images/include-images.png)
+
+# Development mode
+
+Supported development mode.
+
+```
+env HUGO_ENV="DEV" hugo server --watch --buildDrafts=true --buildFuture=true -t robust
+```
+
+This mode is
+
+* Not show Google Analytics tags.
+* Show `WordCount`.
+
+And set `{{ if ne (getenv "HUGO_ENV") "DEV" }} Set elements here. {{ end }}` if you want to place only in a production environment.
