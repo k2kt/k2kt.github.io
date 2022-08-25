@@ -1,8 +1,8 @@
 ---
-title: "Sample Page"
-date: 2022-01-01
-categories: ["hugo"]
-tags: ["go", "markdown"]
+title: "G"
+date: 2022-05-01
+categories: ["r"]
+tags: ["ga", "ha"]
 menu: main
 ---
 
